@@ -4,43 +4,128 @@
     <link rel="stylesheet" href="/static/font-awesome-4.2.0/css/font-awesome.min.css"/>
 {% endblock %}
 {% block body %}
-    <div class="container text-center">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Tekton (_will_)</h1>
-                <p>{% trans %}A Full-Stack project for Google App Engine{% endtrans %}</p>
+            <div class="page-header text-center">
+                <h1>
+                    Meu Pet Manero <small>Produtos para seu Pet</small>
+                </h1>
             </div>
-        </div>
-        <br/>
 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="well">
-                    <h2>{% trans %}Create CRUD code on
-                        <a href="https://cloud.google.com/products/app-engine/">App Engine</a>{% endtrans %}
-                    </h2>
-                    <br/>
-
-                    <p>
-                        <a href="/courses" class="btn btn-primary"></i>{% trans %} Check Courses App
-                            Out{% endtrans %} &raquo;</a>
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="well">
-                    <h2>{% trans %}Tekton is open source.{% endtrans %}</h2>
-                    <br/>
-
-                    <p>
-                        <a href="https://github.com/renzon/tekton-fullstack" class="btn btn-social btn-github"><i
-                                class="fa fa-github"></i>{% trans %}Check Git Hub Out{% endtrans %} &raquo;</a>
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-6 col-md-offset-3">
-                <iframe width="560" height="315" src="//www.youtube.com/embed/videoseries?list=PLA05yVJtRWYRGIeBxag8uT-3ftcMVT5oF" frameborder="0" allowfullscreen></iframe>
+            <div class="carousel slide" id="carousel-801187">
+                <ol class="carousel-indicators">
+                    <li data-slide-to="0" data-target="#carousel-801187">
+                    </li>
+                    <li data-slide-to="1" data-target="#carousel-801187" class="active">
+                    </li>
+                    <li data-slide-to="2" data-target="#carousel-801187">
+                    </li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item">
+                        <img alt="" src="static/img/home_banner1.jpg">
+                        <div class="carousel-caption">
+                            <h4>
+                                First Thumbnail label
+                            </h4>
+                            <p>
+                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img alt="" src="static/img/home_banner2.jpg">
+                        <div class="carousel-caption">
+                            <h4>
+                                Second Thumbnail label
+                            </h4>
+                            <p>
+                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item active">
+                        <img alt="" src="static/img/home_banner3.jpg">
+                        <div class="carousel-caption">
+                            <h4>
+                                Tudo para seu animalzinho
+                            </h4>
+                            <p>
+                                Seja qual for, aqui ele será bem tratado!
+                            </p>
+                        </div>
+                    </div>
+                </div> <a class="left carousel-control" href="#carousel-801187" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-801187" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
         </div>
     </div>
+    <div class="row clearfix">
+        <hr/><br/>
+        <div class="col-md-8 column"> 
+            <h3>
+                Confira as novidades!
+            </h3>
+            <div class="row clearfix">
+                
+                <div class="col-md-6 column text-center" style="padding-top: 25px;">
+                    <div>
+                        <img class="img-rounded" width="50%" height="50%" alt="140x140" src="static/img/products/product1.jpg">
+                    </div>
+                    <div >
+                        <label>Teste de produto</label><br/>
+                        <span>Por: 199,90</span><br/>
+                        <a class="btn btn-success" href="#">Comprar »</a>
+                    </div>                  
+                </div>
+
+                <div class="col-md-6 column text-center" style="padding: 25px;">
+                    <div>
+                        <img class="img-rounded" width="50%" height="50%" alt="140x140" src="static/img/products/product2.jpg">
+                    </div>
+                    <div >
+                        <label>Teste de produto</label><br/>
+                        <span>Por: 199,90</span><br/>
+                        <a class="btn btn-success" href="#">Comprar »</a>
+                    </div>                  
+                </div>
+
+                <div class="col-md-6 column text-center" style="padding: 25px;">
+                    <div>
+                        <img class="img-rounded" width="50%" height="50%" alt="140x140" src="static/img/products/product3.jpg">
+                    </div>
+                    <div >
+                        <label>Teste de produto</label><br/>
+                        <span>Por: 199,90</span><br/>
+                        <a class="btn btn-success" href="#">Comprar »</a>
+                    </div>                  
+                </div>
+
+                <div class="col-md-6 column text-center" style="padding: 25px;">
+                    <div>
+                        <img class="img-rounded" width="50%" height="50%" alt="140x140" src="static/img/products/product4.jpg">
+                    </div>
+                    <div >
+                        <label>Teste de produto</label><br/>
+                        <span>Por: 199,90</span><br/>
+                        <a class="btn btn-success" href="#">Comprar »</a>
+                    </div>                  
+                </div>
+                
+            </div>
+        
+        </div>
+        <div class="col-md-4 column">
+            <h4>
+                Fique ligado
+            </h4>
+            <p>
+                Dicas para você cuidar bem do seu bichinho!
+            </p>
+            <img class="img-rounded" alt="140x140" src="http://lorempixel.com/140/140/">
+            <blockquote>
+                <p>
+                    Lorem ipsum dolor sit amet, 
+                </p> <small>Someone famous <cite>Source Title</cite></small>
+            </blockquote>
+        </div>
+    </div>
+</div>
 {% endblock %}
