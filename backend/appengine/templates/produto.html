@@ -1,0 +1,79 @@
+{% extends 'base/base.html' %}
+{% block css %}
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap-social.css"/>
+    <link rel="stylesheet" href="/static/font-awesome-4.2.0/css/font-awesome.min.css"/>
+{% endblock %}
+{% block body %}
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="col-md-2 column">
+
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">Cosméticos</a>
+                    <div class="list-group-item">
+                        Roupas
+                    </div>
+                    <div class="list-group-item">
+                        Camas
+                    </div>
+                    <div class="list-group-item">
+                        Alimentação
+                    </div>
+                    <div class="list-group-item">
+                        Coleiras
+                    </div>
+
+                    <a href="#" class="list-group-item active"> Saúde/Higiene</a>
+                    <div class="list-group-item">
+                        Shampoos
+                    </div>
+
+                    <div class="list-group-item">
+                        Vacinas
+                    </div>
+
+                    <a href="#" class="list-group-item active">Para você</a>
+
+                    <div class="list-group-item">
+                        Camisetas
+                    </div>
+
+                    <div class="list-group-item">
+                        Canecas
+                    </div>
+
+                    <a class="list-group-item active"><span class="badge">14</span>Novidades</a>
+                </div>
+
+        </div>
+
+            <div class="col-md-10 column">
+                <div id="foto" class="pull-left">
+                   
+                    <img class="img-rounded produto_imagem1" alt="340x340" src="static/img/products/product2.jpg" />
+                </div>
+
+                <div id="informacoes" class="pull-left produto_informacao">
+                    <h3 class="text-success">  Cama personalizada </h3>
+                    <br/>
+
+                    <label>Descrição:</label>
+                    . Lorem ipsum dolor sit amet.. Lorem ipsum dolor sit amet.
+
+                    <br/>
+
+                    <label>Categoria:</label>
+                    Cão/Gato
+
+                    <br/><br/>
+                    <label>Preço: <span class="preco">59.99</span></label>
+                    
+                    <br/>
+                    <a href="#" class="btn btn-success" type="button">Comprar</a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

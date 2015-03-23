@@ -8,3 +8,20 @@
     border-top: solid #DDDDDD 1px;
     background-color: #f5f5f5;
 }
+
+.produto_imagem1
+{
+	border: 1px solid #E6E6E6;
+	width: 340px;
+	height: 340px;
+}
+
+.produto_informacao
+{
+	margin-left: 20px;
+}
+
+.preco
+{
+	font-size: x-large;
+}
