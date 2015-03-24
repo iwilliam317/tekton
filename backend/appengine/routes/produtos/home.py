@@ -7,7 +7,7 @@ from gaepermission.decorator import login_not_required
 
 @login_not_required
 @no_csrf
-def index():
-	#contexto= {"nome": nome }
+def index(c=''):
+	#contexto= {"categoria": c }
     return TemplateResponse()
 

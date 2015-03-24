@@ -1,19 +1,43 @@
 .footer {
     margin-top: 30px;
-    padding-top: 10px;
+    padding-top: 20px;
     bottom: 0;
     width: 100%;
     /* Set the fixed height of the footer here */
     height: 60px;
-    border-top: solid #DDDDDD 1px;
+    border: solid #DDDDDD 1px;
+    border-radius: 4px;
     background-color: #f5f5f5;
 }
 
-.produto_imagem1
+.espacamento_inferior
+{
+    margin-bottom: 20px;
+}
+.espacamento_geral
+{
+    margin: 10px;
+}
+
+.produto_imagem_grande
 {
 	border: 1px solid #E6E6E6;
 	width: 340px;
 	height: 340px;
+}
+
+.produto_imagem_medio
+{
+    border: 1px solid #E6E6E6;
+    width: 200px;
+    height: 200px;
+}
+
+.produto_imagem_pequeno
+{
+    /*border: 1px solid #E6E6E6;*/
+    width: 170px;
+    height: 170px;
 }
 
 .produto_informacao
@@ -24,4 +48,9 @@
 .preco
 {
 	font-size: x-large;
+}
+
+.borda_direita
+{
+    border-right: 1px solid #E6E6E6;
 }
