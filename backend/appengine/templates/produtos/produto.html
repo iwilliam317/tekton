@@ -1,9 +1,12 @@
 {% extends 'produtos/base.html' %}
 
 {% block detalhe %}
-    <div id="foto" class="pull-left">
 
-        <img class="img-rounded produto_imagem_grande" alt="340x340" src="/static/img/products/product1.jpg"/>
+    <div  class="pull-left text-center">
+
+        <img class="img-rounded produto_imagem_grande" alt="340x340" src="/static/img/products/product1.jpg" on/><br/>
+        <!-- <a id="modal-278195" href="#produto" role="button" class="btn btn-info glyphicon glyphicon-zoom-in" data-toggle="modal"></a> -->
+        <a id="modal-278195" href="#produto" role="button" style="text-decoration: none" class="glyphicon glyphicon-zoom-in link" data-toggle="modal"> Ampliar</a>
 
     </div>
 
@@ -26,5 +29,28 @@
         <a href="#" class="btn btn-success" type="button">Comprar</a>
     </div>
 
+
+
+
+    <div class="modal fade" id="produto" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- <div class="modal-header"> -->
+                     <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+                    <!-- <h4 class="modal-title text-success" id="myModalLabel">
+                        Cama personalizada
+                    </h4> -->
+             <!--    </div> -->
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <img class="img-rounded" style="width: 500px; height:500px " src="/static/img/products/product1.jpg"/>
+                </div>
+
+            </div>
+            
+        </div>
+        
+    </div>
+            
 
 {% endblock %}

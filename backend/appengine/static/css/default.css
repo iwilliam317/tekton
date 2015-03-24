@@ -54,3 +54,9 @@
 {
     border-right: 1px solid #E6E6E6;
 }
+
+.link
+{
+    text-decoration: none;
+    color: black;
+}
