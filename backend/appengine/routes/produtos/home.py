@@ -5,9 +5,14 @@ from gaecookie.decorator import no_csrf
 from gaepermission.decorator import login_not_required
 
 
+# @login_not_required
+# @no_csrf
+# def index(c=''):
+# 	contexto = {'categoria': c}
+#     return TemplateResponse(contexto,'/produtos/home.html')
+
 @login_not_required
 @no_csrf
-def index(c=''):
-	#contexto= {"categoria": c }
-    return TemplateResponse()
-
+def index(c='tudo'):
+	contexto = {'categoria': c}
+	return TemplateResponse(contexto,'/produtos/home.html')

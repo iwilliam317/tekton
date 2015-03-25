@@ -60,3 +60,9 @@
     text-decoration: none;
     color: black;
 }
+
+.noticia_imagem_pequeno
+{
+    width: 200px;
+    height: 170px;
+}

@@ -7,7 +7,6 @@ from gaepermission.decorator import login_not_required
 
 @login_not_required
 @no_csrf
-def index(p='1'):
-	contexto= {'produto_id': p}
-	return TemplateResponse(contexto,'/produtos/produto.html')
+def index():
+    return TemplateResponse(template_path='noticias/home.html')
 

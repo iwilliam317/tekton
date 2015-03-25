@@ -1,0 +1,33 @@
+{% extends 'base/base.html' %}
+{% block css %}
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap-social.css"/>
+    <link rel="stylesheet" href="/static/font-awesome-4.2.0/css/font-awesome.min.css"/>
+{% endblock %}
+{% block body %}
+    <div class="row clearfix">
+        <div class="col-md-7 column">
+            <h3 class="text-left text-primary">
+                {% block titulo_noticia %} {% endblock %} 
+            </h3>
+
+            <h4 class="text-left text-muted">
+                {% block sub_titulo_noticia %} {% endblock %} 
+            </h4>
+
+            <br/><br/>
+            <div style="width: 100%; background-repeat:no-repeat;text-align:center">
+                {% block foto_noticia %}
+                {% endblock %}
+            </div>
+            
+            <div class="text-justify">
+                {% block noticia %}
+                {% endblock %}       
+            </div>  
+   
+        </div>
+    </div>
+
+{% endblock %}
+
+
