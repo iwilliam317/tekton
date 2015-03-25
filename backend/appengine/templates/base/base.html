@@ -39,16 +39,21 @@
         <div class="col-md-12 column">
             <nav class="navbar navbar-default" role="navigation">
                 <div class="navbar-header">
-                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand glyphicon glyphicon-home" href="/"></a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1"><span
+                            class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
+                            class="icon-bar"></span><span class="icon-bar"></span></button>
+                    <a class="navbar-brand glyphicon glyphicon-home" href="/"></a>
                 </div>
-                
+
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li>
                             <a href="#">Link</a>
                         </li>
                         <li class="dropdown">
-                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos <strong class="caret"></strong></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos <strong
+                                    class="caret"></strong></a>
                             <ul class="dropdown-menu">
                                 <li>
                                     <a href="/produtos?c=roupas">Roupas</a>
@@ -63,7 +68,7 @@
                                 <li>
                                     <a href="/produtos?c=coleiras">Coleiras</a>
                                 </li>
-                                
+
                                 <li class="divider">
                                 </li>
 
@@ -95,7 +100,7 @@
                     <form class="navbar-form navbar-left" role="search" action="/produtos">
                         <div class="form-group">
                             <input class="form-control" type="text" placeholder="Pesquise seu produto">
-                        </div> 
+                        </div>
 
 
                         <button type="submit" class="btn btn-default glyphicon glyphicon-search"></button>
@@ -105,10 +110,11 @@
                         <li>
                             <a href="" class="glyphicon glyphicon-shopping-cart"> Carrinho</a>
                         </li>
-                        
+
                         {% if _logged_user %}
                             <li class="dropdown">
-                                 <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown"> Olá {{ _logged_user.name }}<strong class="caret"></strong></a>
+                                <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown">
+                                    Olá {{ _logged_user.name }}<strong class="caret"></strong></a>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="#">Meus Dados</a>
@@ -120,18 +126,20 @@
                                     </li>
                                     <li>
                                         <form action="{{ _logout_path }}" method="post" class="text-center">
-                                            <button class="btn btn-danger" type="submit"><i class="fa fa-sign-out"></i> {% trans %} Sair{% endtrans %}</button>
+                                            <button class="btn btn-danger" type="submit"><i class="fa fa-sign-out"></i>
+                                                {% trans %} Sair{% endtrans %}</button>
                                             <!-- <a href="#">Sair</a> -->
-                                        {{ csrf_input() }}
-                                    </form>
-                                        
+                                            {{ csrf_input() }}
+                                        </form>
+
                                     </li>
                                 </ul>
                             </li>
 
                         {% else %}
                             <li class="dropdown">
-                                 <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown"> Entrar <strong class="caret"></strong></a>
+                                <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown">
+                                    Entrar <strong class="caret"></strong></a>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="{{ _login_path }}"><i class="fa fa-sign-in"></i> Login</a>
@@ -152,22 +160,25 @@
                         {% endif %}
                     </ul>
                 </div>
-                
+
             </nav>
         </div>
     </div>
-{% block body %}{% endblock %}
-</div>   <!-- div container-->
+    {% block body %}{% endblock %}
+</div>
+<!-- div container-->
 <div class="">
     <div class="container">
-    <div class="col-md-12 column footer">
-        <p class="text-muted text-right">Autor: William S Obana | <a href="https://www.facebook.com/meupetmanero?ref=ts&fref=ts"><i class="fa fa-facebook"></i></a> |<a target="_blank"
-                                                               href="https://github.com/iwilliam317/tekton">  <i class="fa fa-github-alt"></i> Git
-            Hub</a>
+        <div class="col-md-12 column footer">
+            <p class="text-muted text-right">Autor: William S Obana | <a
+                    href="https://www.facebook.com/meupetmanero?ref=ts&fref=ts"><i class="fa fa-facebook"></i></a> |<a
+                    target="_blank"
+                    href="https://github.com/iwilliam317/tekton"> <i class="fa fa-github-alt"></i> Git
+                Hub</a>
 
-        </p>
+            </p>
         </div>
-        
+
     </div>
 </div>
 </body>
