@@ -3,52 +3,33 @@
 {% block detalhe %}
 
 <h5 class="text-success text-center">
-	Filtro: 
+	Resultados:  
 	<label class="text-capitalize">
+	{{ quantidade }} 
+
 	{% if categoria=='' %}
-		Tudo
+		(Todos)
+
 	{% else %}
-		{{ categoria }}
+		({{ categoria }})
+		
 	{% endif %}
 	</label>
 </h5>
-	
 
-<div class="pull-left espacamento_inferior">
+<!-- <form id="frm_produto" action="/produtos/produto" action="post"> -->
+{% for p in produtos %}
+	<div class="pull-left espacamento_inferior">
 	<div class="text-center">
-		<img class="img-rounded produto_imagem_medio espacamento_geral" src="static/img/products/product2.jpg"/><br/><a href="produtos/produto?p=2">Produto 2</a>
+		<img class="img-rounded produto_imagem_medio espacamento_geral" src="static/img/products/product{{ p.codigo}}.jpg"/><br/>
+		<a href="produtos/produto?p={{p.codigo}}">{{p.nome}}</a>
+		<!-- <a href="javascript:frm_produto.submit()">{{p.nome}}</a> -->
 	</div>
 </div>
 
-<div class="pull-left espacamento_inferior">
-	<div class="text-center">
-		<img class="img-rounded produto_imagem_medio espacamento_geral" src="static/img/products/product3.jpg"/><br/><a href="produtos/produto?p=3">Produto 3</a>
-	</div>
-</div>
+{% endfor %}
 
-<div class="pull-left espacamento_inferior">
-	<div class="text-center">
-		<img class="img-rounded produto_imagem_medio espacamento_geral" src="static/img/products/product1.jpg"/><br/><a href="produtos/produto?p=1">Produto 1</a>
-	</div>
-</div>
-
-<div class="pull-left espacamento_inferior">
-	<div class="text-center">
-		<img class="img-rounded produto_imagem_medio espacamento_geral" src="static/img/products/product4.jpg"/><br/><a href="produtos/produto?p=4">Produto 4</a>
-	</div>
-</div>
-
-<div class="pull-left espacamento_inferior">
-	<div class="text-center">
-		<img class="img-rounded produto_imagem_medio espacamento_geral" src="static/img/products/product4.jpg"/><br/><a href="produtos/produto?p=4">Produto 4</a>
-	</div>
-</div>
-
-<div class="pull-left espacamento_inferior">
-	<div class="text-center">
-		<img class="img-rounded produto_imagem_medio espacamento_geral" src="static/img/products/product1.jpg"/><br/><a href="produtos/produto?p=1">Produto 1</a>
-	</div>
-</div>
+<!-- </form> -->
 
     
 {% endblock %}

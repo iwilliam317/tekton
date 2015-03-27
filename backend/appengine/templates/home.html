@@ -66,8 +66,24 @@
                 Confira as novidades!
             </h3>
             <div class="row clearfix">
+
+                {% for p in produtos %}
+
+                    <div class="col-md-6 column text-center espacamento_inferior">
+                    <div>
+                        <img class="img-rounded produto_imagem_pequeno"  src="static/img/products/product{{p.codigo}}.jpg">
+                    </div>
+                    <div >
+                        <label>{{ p.nome }}</label><br/>
+                        <span>Por: {{p.preco}}</span><br/>
+                        <a class="btn btn-success" href="/produtos/produto?p={{p.codigo}}"><i class="fa fa-plus"></i> Detalhes</a>
+                    </div>                  
+                </div>
+
+                    
+                {% endfor%}
                 
-                <div class="col-md-6 column text-center espacamento_inferior">
+                <!-- <div class="col-md-6 column text-center espacamento_inferior">
                     <div>
                         <img class="img-rounded produto_imagem_pequeno" src="static/img/products/product1.jpg">
                     </div>
@@ -109,7 +125,7 @@
                         <span>Por: 199,90</span><br/>
                         <a class="btn btn-success" href="/produtos/produto?p=4"><i class="fa fa-plus"></i> Detalhes</a>
                     </div>                  
-                </div>
+                </div> -->
                 
             </div>
         
@@ -134,14 +150,14 @@
             
             <hr/>
 
-             <img class="img-rounded noticia_imagem_pequeno"  src="static/img/noticias/noticia1.jpg">
+             <!-- <img class="img-rounded noticia_imagem_pequeno"  src="static/img/noticias/noticia1.jpg">
            
                 <p style="margin-left: 10px; margin-top: 10px">
                     <a href="/noticias">
                         <i class="fa fa-newspaper-o"></i>                    
                         <span class="text-muted"> Crise Hídrica (Dicas de banho)</span>
                     </a> 
-                </p> 
+                </p>  -->
 
         </div>
     </div>
