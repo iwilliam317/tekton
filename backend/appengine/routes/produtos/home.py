@@ -9,7 +9,7 @@ from gaepermission.decorator import login_not_required
 @no_csrf
 def index(c=''):
 
-	### FIXME ENQUANTO NÃO TEM BD CENTRALIZAR CODIGO ##
+	### FIXME ENQUANTO NÃO TEM BD CRIAR CLASSE CENTRALIZADA PARA EVITAR REPLIUCAÇÃO DE CODIGO ###
 	class Produto (object):
 		def __init__(self, codigo, nome, descricao, preco, categoria, novidades):
 			self.codigo = codigo

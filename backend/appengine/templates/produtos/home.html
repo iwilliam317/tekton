@@ -12,7 +12,7 @@
 
 	{% else %}
 		({{ categoria }})
-		
+
 	{% endif %}
 	</label>
 </h5>
@@ -22,7 +22,7 @@
 	<div class="pull-left espacamento_inferior">
 	<div class="text-center">
 		<img class="img-rounded produto_imagem_medio espacamento_geral" src="static/img/products/product{{ p.codigo}}.jpg"/><br/>
-		<a href="produtos/produto?p={{p.codigo}}">{{p.nome}}</a>
+		<a href="produtos/produto?p={{p.codigo}}">{{p.nome}}</a> {% if p.novidades==1 %}<img src="static/img/novo.gif">{% endif%}
 		<!-- <a href="javascript:frm_produto.submit()">{{p.nome}}</a> -->
 	</div>
 </div>
