@@ -118,7 +118,7 @@
                                     Olá {{ _logged_user.name }}<strong class="caret"></strong></a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="#">Meus Dados</a>
+                                        <a href="/cliente/meus_dados">Meus Dados</a>
                                     </li>
                                     <li>
                                         <a href="#">Meus Pedidos</a>
@@ -126,16 +126,16 @@
                                     <li class="divider">
                                     </li>
                                     <li>
-                                        <form action="{{ _logout_path }}" method="post" class="text-center">
-                                            <button class="btn btn-danger" type="submit"><i class="fa fa-sign-out"></i>
-                                                {% trans %} Sair{% endtrans %}</button>
-                                            <!-- <a href="#">Sair</a> -->
-                                            {{ csrf_input() }}
-                                        </form>
-
+                                            <a href="javascript:frm_logout.submit()">
+                                                <i class="fa fa-sign-out"></i> {% trans %} Sair{% endtrans %}
+                                                
+                                            </a>   
                                     </li>
                                 </ul>
                             </li>
+                            <form id="frm_logout" action="{{ _logout_path }}" method="post" class="text-center">
+                                {{ csrf_input() }}
+                            </form> 
 
                         {% else %}
                             <li class="dropdown">
@@ -143,19 +143,20 @@
                                     Entrar <strong class="caret"></strong></a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="{{ _login_path }}"><i class="fa fa-sign-in"></i> Login</a>
+                                        <a href="{{ _login_path }}"><i class="fa fa-sign-in"></i> Entrar</a>
                                     </li>
+
                                     <li>
                                         <a href="/cliente/cadastro"><i class="fa fa-user"></i> Cadastro</a>
                                     </li>
-                                    <!-- <li>
-                                        <a href="#">Meus Pedidos</a>
-                                    </li> -->
+
                                     <li class="divider">
                                     </li>
+
                                     <li>
                                         <a href="#">Redes Sociais</a>
                                     </li>
+
                                 </ul>
                             </li>
                         {% endif %}
@@ -171,7 +172,7 @@
 <div class="">
     <div class="container">
         <div class="col-md-12 column footer">
-            <p class="text-muted text-right">Autor: William S Obana | <a
+            <p class="text-muted text-right">Autor: William | <a
                     href="https://www.facebook.com/meupetmanero?ref=ts&fref=ts" target="_blank"><i class="fa fa-facebook"></i></a> |<a
                     target="_blank"
                     href="https://github.com/iwilliam317/tekton"> <i class="fa fa-github-alt"></i> </a>
