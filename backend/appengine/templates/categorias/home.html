@@ -1,0 +1,38 @@
+{% extends 'base/base.html' %}
+{% block css %}
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap-social.css"/>
+    <link rel="stylesheet" href="/static/font-awesome-4.2.0/css/font-awesome.min.css"/>
+{% endblock %}
+{% block body %}
+	<div class="row clearfix">
+        <div class="col-md-6 col-md-6-offset-3 text-center">
+        <h3 class="text-primary">Lista de Categorias</h3>
+        <table class="table table-striped">
+            <tr class="info">
+                <td><h4>Código</h4></td>
+                <td><h4>Nome</h4></td>
+                <td><h4>Categoria Pai</h4></td>
+                <td><h4>Editar</h4></td>
+                <td><h4>Deletar</h4></td>
+            </tr>
+
+            {% for cat in lista_categorias %}
+                <tr><td>{{cat.key.id()}}</td>
+                <td>{{cat.nome}}</td>
+                <td>{{cat.categoria_pai}}</td>
+                <td><a class="btn btn-warning glyphicon glyphicon-pencil"></a></td>
+                <td><form>
+                <button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+
+                </form></td>
+                </tr>
+            {% endfor %}
+        </table>
+        
+        <a href="/categorias/form" class="btn btn-success">Adicionar mais</a>
+			
+		</div>
+        
+	</div>
+
+{% endblock %}

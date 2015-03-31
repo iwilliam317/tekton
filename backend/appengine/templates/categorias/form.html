@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+{% block css %}
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap-social.css"/>
+    <link rel="stylesheet" href="/static/font-awesome-4.2.0/css/font-awesome.min.css"/>
+{% endblock %}
+{% block body %}
+	<div class="row clearfix">
+        <div class="col-md-6 col-md-6-offset-3">
+        <h3>Cadastro de Categorias</h3>
+        <div class="well">
+            <form method="post" action="{{ salvar_path }}">
+               
+                {{ form_input('Nome', 'nome', categoria.nome, erros.nome)}}
+
+                <div class="form-group">
+                    <label for="categoria_pai"> Categoria Pai</label>
+                    <select class="form-control" name="categoria_pai" required=required>
+                        <option value="">Selecione</option>
+                        <option value="cosmeticos" {%if categoria.categoria_pai == "cosmeticos" %} selected="selected" {%endif%}>Cosméticos</option>
+                        <option value="para_voce"  {%if categoria.categoria_pai == "para_voce" %} selected="selected" {%endif%}>Para Você</option>
+                        <option value="saude_higiene"  {%if categoria.categoria_pai == "saude_higiene" %} selected="selected" {%endif%}>Saúde/Higiene</option>
+                        <option value="novidades"  {%if categoria.categoria_pai == "novidades" %} selected="selected" {%endif%}>Novidades</option>
+                    </select>
+                </div>
+
+                {{ csrf_input() }}
+                <input type="submit" class="btn btn-success" value="Cadastrar">
+            </form>
+        	
+        </div>
+			
+		</div>
+        
+	</div>
+
+{% endblock %}
