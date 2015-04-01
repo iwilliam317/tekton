@@ -16,12 +16,13 @@
                 <td><h4>Deletar</h4></td>
             </tr>
 
-            {% for cat in lista_categorias %}
+            {% for cat in categorias %}
                 <tr><td>{{cat.key.id()}}</td>
                 <td>{{cat.nome}}</td>
                 <td>{{cat.categoria_pai}}</td>
-                <td><a class="btn btn-warning glyphicon glyphicon-pencil"></a></td>
-                <td><form>
+                <td><a href="{{ cat.editar_path }}" class="btn btn-warning glyphicon glyphicon-pencil"></a></td>
+                <td><form method="post" action="{{ cat.deletar_path }}">
+                    {{ csrf_input() }}
                 <button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
 
                 </form></td>
