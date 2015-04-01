@@ -12,10 +12,7 @@ from tekton.gae.middleware.redirect import RedirectResponse
 
 @no_csrf
 def index():
-    query = model.Categoria.query()
-    query.fetch()
-
-    contexto = {'salvar_path': router.to_path(salvar), 'categoria': '', 'erros': '', 'lista_categorias': query.fetch()}
+    contexto = {'salvar_path': router.to_path(salvar), 'categoria': '', 'erros': '',  'acao': 'adicionar'}
     return TemplateResponse(contexto, template_path='categorias/form.html')
 
 

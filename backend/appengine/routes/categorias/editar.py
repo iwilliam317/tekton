@@ -11,8 +11,9 @@ from tekton.router import to_path
 @no_csrf
 def index(categoria_id):
     categoria = Categoria.get_by_id(int(categoria_id))
+    acao = 'editar'
     ctx = {'categoria': categoria,
-           'salvar_path': to_path(atualizar),'erros': ''}
+           'salvar_path': to_path(atualizar),'erros': '', 'acao' : acao}
     return TemplateResponse(ctx, 'categorias/form.html')
 
 

@@ -7,3 +7,7 @@ from gaeforms.ndb import property
 class Categoria(Node):
 	nome = ndb.StringProperty(required=True)
 	categoria_pai = ndb.StringProperty(required=True)
+	
+	@classmethod
+	def query_ordenada_por_nome(cls):
+		return cls.query().order(Categoria.nome)

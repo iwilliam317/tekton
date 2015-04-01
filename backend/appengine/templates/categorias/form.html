@@ -24,8 +24,10 @@
                 </div>
 
                 {{ csrf_input() }}
-                <input type="submit" class="btn btn-success" value="Cadastrar">
+                <input type="submit" class="btn btn-success" value="{%if acao=='adicionar'%}Cadastrar{%else%} Alterar{%endif%}">
+                {% if acao== 'editar' %}
                 <input type="hidden" name="categoria_id" value="{{ categoria.key.id() }}" />
+                {%endif%}
             </form>
         	
         </div>

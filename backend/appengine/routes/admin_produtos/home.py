@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
-from categoria.model import Categoria
+from produto.produto_model import Produto
 from config.template_middleware import TemplateResponse
 from gaecookie.decorator import no_csrf
 from gaepermission.decorator import login_not_required
-from categoria import model
+# from categoria import model
 from tekton.router import to_path
-from routes.categorias import editar
+from routes.admin_produtos import editar
 from google.appengine.ext import ndb
 from tekton.gae.middleware.redirect import RedirectResponse
 
@@ -14,21 +14,21 @@ from tekton.gae.middleware.redirect import RedirectResponse
 @no_csrf
 def index():
 
-    query = Categoria.query()
+    query = Produto.query()
 
     editar_path_base = to_path(editar)
     deletar_path_base = to_path(deletar)
 
-    categorias = query.fetch()
-    for cat in categorias:
-        cat.editar_path = to_path(editar_path_base, cat.key.id())
-        cat.deletar_path = to_path(deletar_path_base, cat.key.id())
+    produtos = query.fetch()
+    for prod in produtos:
+        prod.editar_path = to_path(editar_path_base, prod.key.id())
+        prod.deletar_path = to_path(deletar_path_base, prod.key.id())
 
 
-    contexto = {'categorias': categorias, 'resultados': len(categorias)}
+    contexto = {'produtos': produtos, 'resultados': len(produtos)}
     return TemplateResponse(contexto)
 
-def deletar(_resp,categoria_id):
-	key= ndb.Key(Categoria, int(categoria_id))
+def deletar(produto_id):
+	key= ndb.Key(Produto, int(produto_id))
 	key.delete()
-	return RedirectResponse('/categorias')
+	return RedirectResponse('/admin_produtos')
