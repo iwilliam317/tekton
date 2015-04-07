@@ -19,7 +19,7 @@
                     <select class="form-control" name="categoria" required=required>
                         <option value="">Selecione</option>
                         {% for cat in categorias %}
-                            <!-- FIX-ME NÃO ESTÁ SELECIONANDO QUANDO OCORRE ERRO DE VALIDAÇÃO -->
+                            <!-- FIX-ME NÃO ESTÁ SELECIONANDO QUANDO OCORRE ERRO DE VALIDAÇÃO, COMPARANDO INT COM STRING -->
                             <option value="{{cat.key.id()}}" {%if cat.key.id() == produto.categoria %} selected="selected" {%endif%}>{{cat.nome}}</option>
                         {% endfor %}
                     </select>
@@ -29,8 +29,8 @@
                     <label for="novidades"> Novidade? </label>
                     <select class="form-control" name="novidade" required=required>
                         <option value="">Selecione</option>
-                        <option value="1" {% if produto.novidade == 1%} selected="selected" {% endif %}>Sim</option>
-                        <option value="0" {% if produto.novidade == 0%} selected="selected" {% endif %}>Não</option>
+                        <option value="1" {% if produto.novidade == '1'%} selected="selected" {% endif %}>Sim</option>
+                        <option value="0" {% if produto.novidade == '0'%} selected="selected" {% endif %}>Não</option>
                     </select>
                 </div>
 

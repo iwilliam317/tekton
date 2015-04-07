@@ -16,7 +16,7 @@ def index(produto_id):
     acao = 'editar'
     contexto = {'produto': produto,
            'salvar_path': to_path(atualizar),'erros': '', 'acao' : acao, 'categorias': Categoria.query_ordenada_por_nome()}
-    return TemplateResponse(contexto, 'admin_produtos/cadastro.html')
+    return TemplateResponse(contexto, 'produtos/admin/cadastro.html')
 
 
 def atualizar(produto_id, nome, categoria, descricao, preco, novidade):
@@ -28,4 +28,4 @@ def atualizar(produto_id, nome, categoria, descricao, preco, novidade):
     produto.novidade = int(novidade)
 
     produto.put()
-    return RedirectResponse('/admin_produtos')
+    return RedirectResponse('/produtos/admin')

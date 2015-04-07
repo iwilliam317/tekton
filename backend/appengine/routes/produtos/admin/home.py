@@ -6,7 +6,7 @@ from gaecookie.decorator import no_csrf
 from gaepermission.decorator import login_not_required
 # from categoria import model
 from tekton.router import to_path
-from routes.admin_produtos import editar
+from routes.produtos.admin import editar
 from google.appengine.ext import ndb
 from tekton.gae.middleware.redirect import RedirectResponse
 
@@ -29,6 +29,6 @@ def index():
     return TemplateResponse(contexto)
 
 def deletar(produto_id):
-	key= ndb.Key(Produto, int(produto_id))
-	key.delete()
-	return RedirectResponse('/admin_produtos')
+	produto= ndb.Key(Produto, int(produto_id))
+	produto.delete()
+	return RedirectResponse('/produtos/admin')

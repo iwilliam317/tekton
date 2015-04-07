@@ -14,7 +14,7 @@ def index(categoria_id):
     acao = 'editar'
     ctx = {'categoria': categoria,
            'salvar_path': to_path(atualizar),'erros': '', 'acao' : acao}
-    return TemplateResponse(ctx, 'categorias/form.html')
+    return TemplateResponse(ctx, 'categorias/cadastro.html')
 
 
 def atualizar(categoria_id, nome, categoria_pai):

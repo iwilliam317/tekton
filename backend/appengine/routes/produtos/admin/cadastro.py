@@ -25,9 +25,9 @@ def salvar(_resp, **propriedades):
 
     if erros:
         contexto = {'salvar_path': to_path(salvar), 'erros': erros, 'produto': produto_form , 'categorias' : Categoria.query_ordenada_por_nome()}
-        return TemplateResponse(contexto, template_path='admin_produtos/cadastro.html')
+        return TemplateResponse(contexto, template_path='produtos/admin/cadastro.html')
     else:    	
         #produto = validation.ProdutoForm.fill_model()
         produto = Produto(nome=propriedades['nome'], preco=propriedades['preco'], categoria=propriedades['categoria'], descricao = propriedades['descricao'], novidade = int(propriedades['novidade']))
         produto.put()
-        return RedirectResponse('/admin_produtos')
+        return RedirectResponse('/produtos/admin')
