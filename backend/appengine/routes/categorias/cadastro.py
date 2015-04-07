@@ -13,7 +13,7 @@ from tekton.gae.middleware.redirect import RedirectResponse
 @no_csrf
 def index():
     contexto = {'salvar_path': router.to_path(salvar), 'categoria': '', 'erros': '',  'acao': 'adicionar'}
-    return TemplateResponse(contexto, template_path='categorias/form.html')
+    return TemplateResponse(contexto, template_path='categorias/cadastro.html')
 
 
 def salvar(_resp, **propriedades):
@@ -21,7 +21,7 @@ def salvar(_resp, **propriedades):
     erros = categoria_form.validate()
     if erros:
         contexto = {'salvar_path': router.to_path(salvar), 'erros': erros, 'categoria': categoria_form}
-        return TemplateResponse(contexto, template_path='categorias/form.html')
+        return TemplateResponse(contexto, template_path='categorias/cadastro.html')
     else:
         # categoria = validation.CategoriaForm.fill_model()
         categoria = model.Categoria(nome=propriedades['nome'], categoria_pai=propriedades['categoria_pai'])

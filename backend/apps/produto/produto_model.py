@@ -13,3 +13,4 @@ class Produto(Node):
 	categoria = ndb.StringProperty(required=True)
 	descricao = ndb.StringProperty(required=True)
 	novidade = ndb.IntegerProperty(required=True)
+	#foto = ndb.StringProperty(required=True)
