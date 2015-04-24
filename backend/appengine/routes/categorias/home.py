@@ -12,6 +12,7 @@ from tekton.gae.middleware.redirect import RedirectResponse
 
 
 @no_csrf
+@login_not_required
 def index():
 
     query = Categoria.query()
@@ -28,6 +29,7 @@ def index():
     contexto = {'categorias': categorias, 'resultados': len(categorias)}
     return TemplateResponse(contexto)
 
+@login_not_required
 def deletar(_resp,categoria_id):
 	key= ndb.Key(Categoria, int(categoria_id))
 	key.delete()

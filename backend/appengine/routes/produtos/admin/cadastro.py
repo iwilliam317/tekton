@@ -13,12 +13,13 @@ from tekton.gae.middleware.redirect import RedirectResponse
 
 
 @no_csrf
+@login_not_required
 def index():
     salvar_path = to_path(salvar)
     contexto = {'categorias': Categoria.query_ordenada_por_nome(), 'salvar_path': salvar_path, 'acao' : 'adicionar'}
     return TemplateResponse(contexto)
 
-
+@login_not_required
 def salvar(_resp, **propriedades):
     propriedades['categoria']=ndb.Key(Categoria,int(propriedades['categoria']))    
     produto_form = validation.ProdutoForm(**propriedades)

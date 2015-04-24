@@ -11,11 +11,12 @@ from tekton.gae.middleware.redirect import RedirectResponse
 
 
 @no_csrf
+@login_not_required
 def index():
     contexto = {'salvar_path': router.to_path(salvar), 'categoria': '', 'erros': '',  'acao': 'adicionar'}
     return TemplateResponse(contexto, template_path='categorias/cadastro.html')
 
-
+@login_not_required
 def salvar(_resp, **propriedades):
     categoria_form = validation.CategoriaForm(**propriedades)
     erros = categoria_form.validate()

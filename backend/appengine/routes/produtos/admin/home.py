@@ -12,6 +12,7 @@ from tekton.gae.middleware.redirect import RedirectResponse
 
 
 @no_csrf
+@login_not_required
 def index(_resp,categoria_selecionada=""):
 
     editar_path_base = to_path(editar)
@@ -36,7 +37,7 @@ def index(_resp,categoria_selecionada=""):
 
     contexto['resultados'] = len(contexto['produtos'])   
     return TemplateResponse(contexto)
-
+@login_not_required
 def deletar(produto_id):
     
 	produto= ndb.Key(Produto, int(produto_id))
