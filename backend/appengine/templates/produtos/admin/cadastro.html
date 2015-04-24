@@ -4,6 +4,9 @@
     <link rel="stylesheet" href="/static/font-awesome-4.2.0/css/font-awesome.min.css"/>
 {% endblock %}
 {% block body %}
+{% set produto = produto or None %}
+{% set erros = erros or None %}
+
 	<div class="row clearfix">
         <div class="col-md-6 col-md-6-offset-3">
         <h3>Cadastro de Produtos</h3>
@@ -19,8 +22,7 @@
                     <select class="form-control" name="categoria" required=required>
                         <option value="">Selecione</option>
                         {% for cat in categorias %}
-                            <!-- FIX-ME NÃO ESTÁ SELECIONANDO QUANDO OCORRE ERRO DE VALIDAÇÃO, COMPARANDO INT COM STRING -->
-                            <option value="{{cat.key.id()}}" {%if cat.key.id() == produto.categoria %} selected="selected" {%endif%}>{{cat.nome}}</option>
+                            <option value="{{cat.key.id()}}" {%if acao=='editar' and cat.key.id() == produto.categoria.id() %} selected="selected" {%endif%}>{{cat.nome}}</option>
                         {% endfor %}
                     </select>
                 </div>

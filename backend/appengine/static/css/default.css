@@ -66,3 +66,9 @@
     width: 200px;
     height: 170px;
 }
+
+.select_pesquisa_categoria_produtos_admin
+{
+    max-width:110px; 
+    display:inline;
+}

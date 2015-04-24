@@ -15,11 +15,12 @@ from tekton.gae.middleware.redirect import RedirectResponse
 @no_csrf
 def index():
     salvar_path = to_path(salvar)
-    contexto = {'categorias': Categoria.query_ordenada_por_nome(), 'salvar_path': salvar_path, 'erros': '', 'produto': '', 'acao' : 'adicionar'}
+    contexto = {'categorias': Categoria.query_ordenada_por_nome(), 'salvar_path': salvar_path, 'acao' : 'adicionar'}
     return TemplateResponse(contexto)
 
 
 def salvar(_resp, **propriedades):
+    propriedades['categoria']=ndb.Key(Categoria,int(propriedades['categoria']))    
     produto_form = validation.ProdutoForm(**propriedades)
     erros = produto_form.validate()
 
@@ -27,7 +28,7 @@ def salvar(_resp, **propriedades):
         contexto = {'salvar_path': to_path(salvar), 'erros': erros, 'produto': produto_form , 'categorias' : Categoria.query_ordenada_por_nome()}
         return TemplateResponse(contexto, template_path='produtos/admin/cadastro.html')
     else:    	
-        #produto = validation.ProdutoForm.fill_model()
-        produto = Produto(nome=propriedades['nome'], preco=propriedades['preco'], categoria=propriedades['categoria'], descricao = propriedades['descricao'], novidade = int(propriedades['novidade']))
+        # produto = Produto(nome=propriedades['nome'], preco=propriedades['preco'], categoria=propriedades['categoria'], descricao = propriedades['descricao'], novidade = int(propriedades['novidade']))
+        produto = produto_form.fill_model()
         produto.put()
         return RedirectResponse('/produtos/admin')

@@ -18,6 +18,12 @@ indexes:
 
 - kind: Node
   properties:
+  - name: categoria
+  - name: class
+  - name: nome
+
+- kind: Node
+  properties:
   - name: class
   - name: creation
 
@@ -35,4 +41,9 @@ indexes:
 - kind: Node
   properties:
   - name: class
+  - name: nome
+
+- kind: Produto
+  properties:
+  - name: categoria
   - name: nome

@@ -3,29 +3,49 @@
     <link rel="stylesheet" href="/static/bootstrap/css/bootstrap-social.css"/>
     <link rel="stylesheet" href="/static/font-awesome-4.2.0/css/font-awesome.min.css"/>
 {% endblock %}
-{% block body %}
+{% block body %}{%for t in teste%}{{t.nome}}{%endfor%}
 	<div class="row clearfix">
-        <div class="col-md-6 col-md-6-offset-3 text-center">
-        {% if resultados > 0%}
-        <h3 class="text-primary">Lista de Produtos </h3>
+    <div class="col-md-9  text-center">
+
+       <form id="frm_pesquisa" method="post">
+                <div class="form-group text-left">
+                    <label for="categoria_selecionada" class="text-primary"> Filtrar por Categorias:  </label>
+                    <select class="form-control select_pesquisa_categoria_produtos_admin" name="categoria_selecionada">
+                        <option value="" onclick="$('#frm_pesquisa').submit()">Todos</option>
+                        {% for cat in categorias %}
+                            <option value="{{cat.key.id()}}" {{ 'selected="selected"' | safe if cat == categoria_selecionada }} onclick="$('#frm_pesquisa').submit()">{{cat.nome}}</option>
+                        {% endfor %}
+                    </select>
+                    
+                </div>
+            </form>
+
+
+        <br/><br/>
+        {% if resultados > 0 or categoria_selecionada%}
+        <h4 class="text-primary">Lista de Produtos {% if categoria_selecionada%}({{categoria_selecionada.nome}}){%endif%}</h4>
         <span class="text-muted">Resultados: {{resultados}}</span><br/><br/>
         
         <table class="table table-striped">
             <tr class="info">
-                <td><h4>Código</h4></td>
-                <td><h4>Nome</h4></td>
-                <td><h4>Categoria</h4></td>
-                <td><h4>Descrição</h4></td>
-                <td><h4>Preço</h4></td>
-                <td><h4>Novidade?</h4></td>
-                <td><h4>Editar</h4></td>
-                <td><h4>Deletar</h4></td>
+                <td><h5>Código</h5></td>
+                <td><h5>Nome</h5></td>
+                <td><h5>Categoria</h5></td>
+                <td><h5>Descrição</h5></td>
+                <td><h5>Preço</h5></td>
+                <td><h5>Novidade?</h5></td>
+                <td><h5>Editar</h5></td>
+                <td><h5>Deletar</h5></td>
             </tr>
 
             {% for prod in produtos %}
                 <tr><td>{{prod.key.id()}}</td>
                 <td>{{prod.nome}}</td>
-                <td>{{prod.categoria}}</td>
+                {% for cat in categorias %}
+                    {%if cat.key.id() == prod.categoria.id()%}
+                <td>{{cat.nome}}</td>
+                {%endif%}
+                {%endfor%}
                 <td>{{prod.descricao}}</td>
                 <td>{{prod.preco}}</td>
                 <td>{%if prod.novidade==1%}Sim{%else%}Não{%endif%}</td>
