@@ -48,7 +48,7 @@
                 {%endfor%}
                 <td>{{prod.descricao}}</td>
                 <td>{{prod.preco}}</td>
-                <td>{%if prod.novidade==1%}Sim{%else%}Não{%endif%}</td>
+                <td>{%if prod.novidade=='1'%}Sim{%else%}Não{%endif%}</td>
                 <td><a href="{{ prod.editar_path }}" class="btn btn-warning glyphicon glyphicon-pencil"></a></td>
                 <td><form onSubmit="return confirm('Deseja apagar esse registro?')" method="post" action="{{ prod.deletar_path }}">
                     {{ csrf_input() }}

@@ -2,7 +2,7 @@
 from __future__ import absolute_import, unicode_literals
 from config.template_middleware import TemplateResponse
 from gaecookie.decorator import no_csrf
-from gaepermission.decorator import login_not_required
+from gaepermission.decorator import login_required
 from tekton import router
 from categoria import model
 from categoria import validation
@@ -11,12 +11,12 @@ from tekton.gae.middleware.redirect import RedirectResponse
 
 
 @no_csrf
-@login_not_required
+@login_required
 def index():
-    contexto = {'salvar_path': router.to_path(salvar), 'categoria': '', 'erros': '',  'acao': 'adicionar'}
+    contexto = {'salvar_path': router.to_path(salvar), 'categoria': '', 'acao': 'adicionar'}
     return TemplateResponse(contexto, template_path='categorias/cadastro.html')
 
-@login_not_required
+@login_required
 def salvar(_resp, **propriedades):
     categoria_form = validation.CategoriaForm(**propriedades)
     erros = categoria_form.validate()

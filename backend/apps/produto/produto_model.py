@@ -9,7 +9,7 @@ from gaeforms.ndb.property import SimpleCurrency
 class Produto(ndb.Model):
 	nome = ndb.StringProperty(required=True)
 	# FIX ME float não funciona
-	preco = ndb.IntegerProperty(required=True)
+	preco = ndb.FloatProperty(required=True)
 	categoria = ndb.KeyProperty(Categoria,required=True)
 	descricao = ndb.StringProperty(required=True)
 	novidade = ndb.StringProperty(required=True)

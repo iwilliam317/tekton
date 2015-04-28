@@ -3,7 +3,7 @@ from __future__ import absolute_import, unicode_literals
 from produto.produto_model import Produto
 from config.template_middleware import TemplateResponse
 from gaecookie.decorator import no_csrf
-from gaepermission.decorator import login_not_required
+from gaepermission.decorator import login_required
 from categoria.model import Categoria
 from tekton.router import to_path
 from routes.produtos.admin import editar
@@ -12,7 +12,7 @@ from tekton.gae.middleware.redirect import RedirectResponse
 
 
 @no_csrf
-@login_not_required
+@login_required
 def index(_resp,categoria_selecionada=""):
 
     editar_path_base = to_path(editar)
@@ -37,7 +37,7 @@ def index(_resp,categoria_selecionada=""):
 
     contexto['resultados'] = len(contexto['produtos'])   
     return TemplateResponse(contexto)
-@login_not_required
+@login_required
 def deletar(produto_id):
     
 	produto= ndb.Key(Produto, int(produto_id))

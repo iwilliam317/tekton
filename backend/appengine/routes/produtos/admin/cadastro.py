@@ -4,7 +4,7 @@ from categoria.model import Categoria
 from produto.produto_model import Produto
 from config.template_middleware import TemplateResponse
 from gaecookie.decorator import no_csrf
-from gaepermission.decorator import login_not_required
+from gaepermission.decorator import login_required
 from produto import validation
 from tekton.router import to_path
 
@@ -13,13 +13,13 @@ from tekton.gae.middleware.redirect import RedirectResponse
 
 
 @no_csrf
-@login_not_required
+@login_required
 def index():
     salvar_path = to_path(salvar)
     contexto = {'categorias': Categoria.query_ordenada_por_nome(), 'salvar_path': salvar_path, 'acao' : 'adicionar'}
     return TemplateResponse(contexto)
 
-@login_not_required
+@login_required
 def salvar(_resp, **propriedades):
     propriedades['categoria']=ndb.Key(Categoria,int(propriedades['categoria']))    
     produto_form = validation.ProdutoForm(**propriedades)

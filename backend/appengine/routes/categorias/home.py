@@ -3,7 +3,7 @@ from __future__ import absolute_import, unicode_literals
 from categoria.model import Categoria
 from config.template_middleware import TemplateResponse
 from gaecookie.decorator import no_csrf
-from gaepermission.decorator import login_not_required
+from gaepermission.decorator import login_required
 from categoria import model
 from tekton.router import to_path
 from routes.categorias import editar
@@ -12,7 +12,7 @@ from tekton.gae.middleware.redirect import RedirectResponse
 
 
 @no_csrf
-@login_not_required
+@login_required
 def index():
 
     query = Categoria.query()
@@ -29,7 +29,7 @@ def index():
     contexto = {'categorias': categorias, 'resultados': len(categorias)}
     return TemplateResponse(contexto)
 
-@login_not_required
+@login_required
 def deletar(_resp,categoria_id):
 	key= ndb.Key(Categoria, int(categoria_id))
 	key.delete()

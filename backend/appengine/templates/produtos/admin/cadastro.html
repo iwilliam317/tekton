@@ -6,6 +6,8 @@
 {% block body %}
 {% set produto = produto or None %}
 {% set erros = erros or None %}
+{% set validacao_id = validacao_id or None %}
+
 
 	<div class="row clearfix">
         <div class="col-md-6 col-md-6-offset-3">
@@ -15,7 +17,6 @@
 
                 {{ form_input('Nome', 'nome', produto.nome ,erros.nome )}}
                 {{ form_input('Descrição', 'descricao',produto.descricao ,erros.descricao )}}
-                * dando erro com float
                 {{ form_input('Preço', 'preco', produto.preco ,erros.preco )}}
 
                 <div class="form-group">
@@ -23,7 +24,7 @@
                     <select class="form-control" name="categoria" required=required>
                         <option value="">Selecione</option>
                         {% for cat in categorias %}
-                            <option value="{{cat.key.id()}}" {%if acao=='editar' and cat.key.id() == produto.categoria.id() %} selected="selected" {%endif%}>{{cat.nome}}</option>
+                            <option value="{{cat.key.id()}}" {{ 'selected="selected"' | safe if cat.key == produto.categoria}}>{{cat.nome}}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -39,8 +40,8 @@
 
                 {{ csrf_input() }}
                 <input type="submit" class="btn btn-success" value="{%if acao=='adicionar'%}Cadastrar{%else%} Alterar{%endif%}">
-                {% if acao=='editar' %}
-                <input type="hidden" class="btn btn-success" value="{{produto.key.id()}}" name="produto_id">
+                {% if acao=='editar' or validacao_id !=None %}
+                <input type="hidden" class="btn btn-success" value="{%if acao=='editar'%}{{produto.key.id()}}{%else%}{{validacao_id.key.id()}}{%endif%}" name="produto_id">
                {%endif%}
             </form>
         	
