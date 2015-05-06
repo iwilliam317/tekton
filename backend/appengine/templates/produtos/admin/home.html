@@ -2,8 +2,13 @@
 {% block css %}
     <link rel="stylesheet" href="/static/bootstrap/css/bootstrap-social.css"/>
     <link rel="stylesheet" href="/static/font-awesome-4.2.0/css/font-awesome.min.css"/>
+         <script type="application/javascript" src="/static/js/produtos.js"></script>
 {% endblock %}
-{% block body %}{%for t in teste%}{{t.nome}}{%endfor%}
+{% block body %}
+
+{% set produto = produto or None %}
+{% set erros = erros or None %}
+{% set validacao_id = validacao_id or None %}
 	<div class="row clearfix">
     <div class="col-md-9  text-center">
 
@@ -61,10 +66,65 @@
         {%else%}
             <h4 class="text-primary">Nenhum Produto Cadastrado Ainda :(</h4>
         {%endif%}
-        <a href="/produtos/admin/cadastro" class="btn btn-success">Adicionar</a>
+        <!-- <a href="/produtos/admin/cadastro" class="btn btn-success">Adicionar</a> -->
+        <a id="modal-278195" href="#produto" role="button" style="text-decoration: none"  class="btn btn-success" data-toggle="modal"> Adicionar</a>
 			
 		</div>
         
 	</div>
+    <div class="modal fade" id="produto" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h3 class="text-center text-primary">Cadastro de Produtos</h3>
+                        <div class="" style="margin: 25px 30px 15px 30px;">
+                            <form  action="#">
 
+                                {{ form_input('Nome', 'nome', produto.nome ,erros.nome )}}
+                                {{ form_input('Descrição', 'descricao',produto.descricao ,erros.descricao )}}
+                                {{ form_input('Preço', 'preco', produto.preco ,erros.preco )}}
+
+                            <div id="categoriaDiv">
+                                <div class="form-group">
+                                    <label for="categoria"> Categoria </label>
+                                    <select class="form-control" name="categoria" required=required id="categoriaSelect">
+                                        <!-- <option value="" disabled="disabled" selected="selected" >Selecione</option> -->
+                                        {% for cat in categorias %}
+                                            <option value="{{cat.key.id()}}" {{ 'selected="selected"' | safe if cat.key == produto.categoria}}>{{cat.nome}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <span id="categoriaSpan" class="help-block">{{ error_msg }}</span>
+                                </div>
+                            </div>
+
+                            <div id="novidadeDiv">
+                                <div  class="form-group">
+                                    <label for="novidades"> Novidade? </label>
+                                    <select class="form-control" name="novidade" required=required id="novidadeSelect">
+                                        <option value="">Selecione</option>
+                                        <option value="1" {% if produto.novidade == '1'%} selected="selected" {% endif %}>Sim</option>
+                                        <option value="0" {% if produto.novidade == '0'%} selected="selected" {% endif %}>Não</option>
+                                    </select>
+                                    <span id="novidadeSpan" class="help-block">{{ error_msg }}</span>
+                                </div>
+
+                            </div>
+                                {{ csrf_input() }}
+                                <!-- <input type="submit" class="btn btn-success" value="{%if acao=='adicionar'%}Cadastrar{%else%} Alterar{%endif%}">
+                                {% if acao=='editar' or validacao_id !=None %}
+                                <input type="hidden" class="btn btn-success" value="{%if acao=='editar'%}{{produto.key.id()}}{%else%}{{validacao_id.key.id()}}{%endif%}" name="produto_id">
+                               {%endif%} -->
+                            </form>
+                            <button id="salvar" class="btn btn-success">Salvar</button>
+                            <button id="fechar" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+
+                            <img id="carregandoImg" src="/static/img/ajax.gif">
+                        </div>
+
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
 {% endblock %}

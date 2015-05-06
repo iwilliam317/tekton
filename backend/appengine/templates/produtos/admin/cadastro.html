@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="/static/bootstrap/css/bootstrap-social.css"/>
     <link rel="stylesheet" href="/static/font-awesome-4.2.0/css/font-awesome.min.css"/>
 {% endblock %}
+
 {% block body %}
 {% set produto = produto or None %}
 {% set erros = erros or None %}
@@ -13,38 +14,47 @@
         <div class="col-md-6 col-md-6-offset-3">
         <h3>Cadastro de Produtos</h3>
         <div class="well">
-            <form method="post" action="{{salvar_path}}">
+            <form action="{{salvar_path}}" method="post">
 
                 {{ form_input('Nome', 'nome', produto.nome ,erros.nome )}}
                 {{ form_input('Descrição', 'descricao',produto.descricao ,erros.descricao )}}
                 {{ form_input('Preço', 'preco', produto.preco ,erros.preco )}}
 
+            <div id="categoriaDiv">
                 <div class="form-group">
                     <label for="categoria"> Categoria </label>
-                    <select class="form-control" name="categoria" required=required>
-                        <option value="">Selecione</option>
+                    <select class="form-control" name="categoria" required=required id="categoriaSelect">
+                        <!-- <option value="" disabled="disabled" selected="selected" >Selecione</option> -->
                         {% for cat in categorias %}
                             <option value="{{cat.key.id()}}" {{ 'selected="selected"' | safe if cat.key == produto.categoria}}>{{cat.nome}}</option>
                         {% endfor %}
                     </select>
+                    <span id="categoriaSpan" class="help-block">{{ error_msg }}</span>
                 </div>
+            </div>
 
-                <div class="form-group">
+            <div id="novidadeDiv">
+                <div  class="form-group">
                     <label for="novidades"> Novidade? </label>
-                    <select class="form-control" name="novidade" required=required>
+                    <select class="form-control" name="novidade" required=required id="novidadeSelect">
                         <option value="">Selecione</option>
                         <option value="1" {% if produto.novidade == '1'%} selected="selected" {% endif %}>Sim</option>
                         <option value="0" {% if produto.novidade == '0'%} selected="selected" {% endif %}>Não</option>
                     </select>
+                    <span id="novidadeSpan" class="help-block">{{ error_msg }}</span>
                 </div>
 
+            </div>
                 {{ csrf_input() }}
                 <input type="submit" class="btn btn-success" value="{%if acao=='adicionar'%}Cadastrar{%else%} Alterar{%endif%}">
                 {% if acao=='editar' or validacao_id !=None %}
                 <input type="hidden" class="btn btn-success" value="{%if acao=='editar'%}{{produto.key.id()}}{%else%}{{validacao_id.key.id()}}{%endif%}" name="produto_id">
                {%endif%}
+               <a href="/produtos/admin" class="btn btn-danger">Cancelar</a>
             </form>
-        	
+        	<!-- <button id="salvar" class="btn btn-success">Salvar</button> -->
+
+            <!-- <img id="carregandoImg" src="/static/img/ajax.gif"> -->
         </div>
 			
 		</div>
