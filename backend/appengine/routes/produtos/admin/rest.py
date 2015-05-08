@@ -10,6 +10,11 @@ from tekton.gae.middleware.json_middleware import JsonUnsecureResponse
 
 @login_required
 @no_csrf
+def index():
+	pass
+
+@login_required
+@no_csrf
 def salvar(_resp,**propriedades):
 	propriedades['categoria']=ndb.Key(Categoria,int(propriedades['categoria']))
 	produto_form = validation.ProdutoForm(**propriedades)

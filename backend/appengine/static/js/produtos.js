@@ -9,6 +9,8 @@ $(document).ready(function(){
 	$carregandoImg.hide();
 	var $btnSalvar = $('#salvar');
 	var $btnFechar = $('#fechar');
+	var $listaProdutos = $('#listaProdutos');
+	$listaProdutos.hide();
 
 	function obterValoresdeProdutos(){
 		return {'nome' : $nomeInput.val() , 'descricao' : $descricaoInput.val(), 'preco': $precoInput.val() , 'categoria' :  $categoriaSelect.val(), 'novidade' : $novidadeSelect.val()}
@@ -16,8 +18,16 @@ $(document).ready(function(){
 	
 	function limparValores(){
 		$('input[type="text"]').val('');
-		$categoriaSelect.val("");
-		$novidadeSelect.val("");
+		$('select').val('');
+	}
+
+	// $.get('/produtos/admin/rest').success(function(resp){
+	// 	console.log(resp);
+	// });
+	function listarProduto (produto) {
+		var msg = '<tr><td>'+produto.responseJSON["id"]+'</td><td>'+produto.responseJSON["nome"]+'</td><td>'+produto.responseJSON["categoria"]+'</td><td>'+produto.responseJSON["descricao"]+'</td><td>'+produto.responseJSON["preco"]+'</td><td>'+(produto.responseJSON["novidade"] == "1" ? 'Sim' : 'Não')+'</td></tr>';
+		$listaProdutos.show();
+		$listaProdutos.append(msg);
 	}
 
 	$btnSalvar.click(function(){
@@ -26,15 +36,16 @@ $(document).ready(function(){
 		$btnSalvar.attr('disabled' , 'disabled');
 
 		$carregandoImg.fadeIn('fast');
-		$.post('/produtos/admin/rest/salvar', obterValoresdeProdutos(),
-		function(produto)
-		{
+		var produto = $.post('/produtos/admin/rest/salvar', obterValoresdeProdutos());
+
+		produto.success(function(){
+
 			limparValores();
 			$btnFechar.click();
-			window.location.reload();	
-		}).error(
-
-		function(erros){
+			listarProduto(produto);	
+		})
+		
+		produto.error(function(erros){
 			for(campos in erros.responseJSON)
 			{
 				$('#'+campos+'Div').addClass('has-error');
