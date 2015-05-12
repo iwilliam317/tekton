@@ -14,7 +14,6 @@ def listar():
 	produtos=Produto.query().fetch()
 	produto_form = validation.ProdutoForm()
 	produtos = [produto_form.fill_with_model(p) for p in produtos]
-	# contexto = {'produtos' : produtos}
 
 	return JsonUnsecureResponse(produtos)
 
@@ -26,14 +25,13 @@ def salvar(_resp,**propriedades):
 	erros = produto_form.validate()
 	if erros:
 		_resp.set_status(400)
-		# _resp.write(erros)
+
 		return JsonUnsecureResponse(erros)
 	else:
-		# _resp.write('eba sem erro')
 		produto = produto_form.fill_model()
 		produto.put()
 		contexto = produto_form.fill_with_model(produto)
-		# _resp.write(contexto)
+
 		return JsonUnsecureResponse(contexto) 
  
 

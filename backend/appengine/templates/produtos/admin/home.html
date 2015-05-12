@@ -21,12 +21,13 @@
                             <option value="{{cat.key.id()}}" {{ 'selected="selected"' | safe if cat == categoria_selecionada }} onclick="$('#frm_pesquisa').submit();">{{cat.nome}}</option>
                         {% endfor %}
                     </select>
-                    
+                    <a id="modal-278195" href="#produto" role="button" style="text-decoration: none"  class="btn btn-success" data-toggle="modal"> Adicionar</a>  
                 </div>
             </form>
 
-
+               
         <br/><br/>
+        <h5 class="text-muted text-left">Estático</h5>
         {% if resultados > 0 or categoria_selecionada%}
         <h4 class="text-primary">Lista de Produtos {% if categoria_selecionada%}({{categoria_selecionada.nome}}){%endif%}</h4>
         <span class="text-muted">Resultados: {{resultados}}</span><br/><br/>
@@ -66,11 +67,10 @@
         {%else%}
             <h4 class="text-primary">Nenhum Produto Cadastrado Ainda :(</h4>
         {%endif%}
-        <!-- <a href="/produtos/admin/cadastro" class="btn btn-success">Adicionar</a> -->
-        <a id="modal-278195" href="#produto" role="button" style="text-decoration: none"  class="btn btn-success" data-toggle="modal"> Adicionar</a>
+        
 		<br/><br/><br/>
         <hr/>
-        <h3 class="text-primary">Dinâmico</h3>
+        <h5 class="text-muted text-left">Dinâmico</h5>
         <table id="listaProdutos" class="table table-striped">
             <tr class="info">
                 <td><h5>Código</h5></td>
