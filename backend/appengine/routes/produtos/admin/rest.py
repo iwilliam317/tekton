@@ -36,3 +36,10 @@ def salvar(_resp,**propriedades):
 		# _resp.write(contexto)
 		return JsonUnsecureResponse(contexto) 
  
+
+@login_required
+@no_csrf
+def deletar(produto_id):
+	key = ndb.Key(Produto, int(produto_id))
+
+	key.delete()

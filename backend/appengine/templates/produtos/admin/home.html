@@ -18,7 +18,7 @@
                     <select class="form-control select_pesquisa_categoria_produtos_admin" name="categoria_selecionada">
                         <option value="" onclick="$('#frm_pesquisa').submit()">Todos</option>
                         {% for cat in categorias %}
-                            <option value="{{cat.key.id()}}" {{ 'selected="selected"' | safe if cat == categoria_selecionada }} onclick="$('#frm_pesquisa').submit()">{{cat.nome}}</option>
+                            <option value="{{cat.key.id()}}" {{ 'selected="selected"' | safe if cat == categoria_selecionada }} onclick="$('#frm_pesquisa').submit();">{{cat.nome}}</option>
                         {% endfor %}
                     </select>
                     
@@ -69,8 +69,8 @@
         <!-- <a href="/produtos/admin/cadastro" class="btn btn-success">Adicionar</a> -->
         <a id="modal-278195" href="#produto" role="button" style="text-decoration: none"  class="btn btn-success" data-toggle="modal"> Adicionar</a>
 		<br/><br/><br/>
-
-
+        <hr/>
+        <h3 class="text-primary">Dinâmico</h3>
         <table id="listaProdutos" class="table table-striped">
             <tr class="info">
                 <td><h5>Código</h5></td>
@@ -79,14 +79,14 @@
                 <td><h5>Descrição</h5></td>
                 <td><h5>Preço</h5></td>
                 <td><h5>Novidade?</h5></td>
-             <!--    <td><h5>Editar</h5></td>
-                <td><h5>Deletar</h5></td> -->
+                <td><h5>Editar</h5></td>
+                <td><h5>Deletar</h5></td>
             </tr>
 
           
         </table>	
 		</div>
-        
+
 	</div>
     <div class="modal fade" id="produto" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
