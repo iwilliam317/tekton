@@ -10,8 +10,13 @@ from tekton.gae.middleware.json_middleware import JsonUnsecureResponse
 
 @login_required
 @no_csrf
-def index():
-	pass
+def listar():
+	produtos=Produto.query().fetch()
+	produto_form = validation.ProdutoForm()
+	produtos = [produto_form.fill_with_model(p) for p in produtos]
+	# contexto = {'produtos' : produtos}
+
+	return JsonUnsecureResponse(produtos)
 
 @login_required
 @no_csrf

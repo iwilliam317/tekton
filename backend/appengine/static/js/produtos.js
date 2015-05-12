@@ -21,11 +21,14 @@ $(document).ready(function(){
 		$('select').val('');
 	}
 
-	// $.get('/produtos/admin/rest').success(function(resp){
-	// 	console.log(resp);
-	// });
+	$.get('/produtos/admin/rest/listar').success(function(produtos){
+		$.each(produtos,function(index, p){
+			listarProduto(p);
+		})
+		
+	});
 	function listarProduto (produto) {
-		var msg = '<tr><td>'+produto.responseJSON["id"]+'</td><td>'+produto.responseJSON["nome"]+'</td><td>'+produto.responseJSON["categoria"]+'</td><td>'+produto.responseJSON["descricao"]+'</td><td>'+produto.responseJSON["preco"]+'</td><td>'+(produto.responseJSON["novidade"] == "1" ? 'Sim' : 'Não')+'</td></tr>';
+		var msg = '<tr><td>'+produto.id+'</td><td>'+produto.nome+'</td><td>'+produto.categoria+'</td><td>'+produto.descricao+'</td><td>'+produto.preco+'</td><td>'+(produto.novidade == "1" ? 'Sim' : 'Não')+'</td></tr>';
 		$listaProdutos.show();
 		$listaProdutos.append(msg);
 	}
