@@ -9,6 +9,7 @@ from tekton.router import to_path
 from routes.categorias import editar
 from google.appengine.ext import ndb
 from tekton.gae.middleware.redirect import RedirectResponse
+from routes.categorias import rest
 
 
 @no_csrf
@@ -26,7 +27,7 @@ def index():
         cat.deletar_path = to_path(deletar_path_base, cat.key.id())
 
 
-    contexto = {'categorias': categorias, 'resultados': len(categorias)}
+    contexto = {'rest_salvar_path': to_path(rest.salvar), 'categorias': categorias, 'resultados': len(categorias)}
     return TemplateResponse(contexto)
 
 @login_required

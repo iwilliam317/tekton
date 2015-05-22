@@ -1,0 +1,24 @@
+<div class="col-md-6 col-md-6-offset-3">
+	<h3>Cadastro de Categorias</h3>
+	<div class="well">
+			<div id="nomeDiv" class="form-group " ng-class="{true: '', false:'has-error'}[erros.nome==null]">
+				<label for="nomeInput" class="control-label">{{nomeLabel}} </label>
+				<input id="nomeInput" class="form-control" type="text" ng-model="category.nome">
+				<span class="help-block" ng-show="erros.nome">{{ erros.nome}}</span>
+			</div>
+			<div class="form-group" ng-class="{true: '', false: 'has-error'}[erros.categoria_pai==null]">
+				<label for="categoria_pai"> {{ categoriaPaiLabel}} </label>
+				<select class="form-control" id="categoria_pai" ng-model="category.categoria_pai">
+					<option value="">Selecione</option>
+					<option value="cosmeticos">Cosméticos</option>
+					<option value="para_voce">Para Você</option>
+					<option value="saude_higiene">Saúde/Higiene</option>
+					<option value="novidades">Novidades</option>
+				</select>
+				<span class="help-block" ng-show="erros.categoria_pai">{{ erros.categoria_pai}}</span>
+			</div>
+			
+			<button class="btn btn-success" ng-click="salvar()" ng-hide="salvando">Cadastrar</button>
+			<img src="/static/img/ajax.gif" ng-show="salvando"/>
+	</div>
+</div>

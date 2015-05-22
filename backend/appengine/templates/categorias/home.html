@@ -2,6 +2,30 @@
 {% block css %}
     <link rel="stylesheet" href="/static/bootstrap/css/bootstrap-social.css"/>
     <link rel="stylesheet" href="/static/font-awesome-4.2.0/css/font-awesome.min.css"/>
+    <script type="text/javascript" src="/static/angular/js/angular.min.js"></script>
+    <script type="text/javascript" src="/static/categoria/js/categoria.js"></script>
+    <script type="text/javascript">
+        var categoriaApp = angular.module('categoriaApp', ['categoriaModulo']);
+        var rest = angular.module('rest', []);
+
+        rest.factory('CategoriaApi', function($http){
+            return{
+                salvar: function(categoria){
+                    return $http.post('{{ rest_salvar_path}}', categoria);
+
+                }
+            }
+        });
+        function CategoriaController($scope){
+            // $scope.categoria = {nome : 'Roupas', categoria_pai : 'cosmeticos'};
+            $scope.selex = 'a';
+            $scope.form = false;
+            $scope.toggle = function () {
+                $scope.form = !$scope.form;
+            };
+        }
+
+    </script>
 {% endblock %}
 {% block body %}
 	<div class="row clearfix">
@@ -34,10 +58,17 @@
         {%else%}
             <h4 class="text-primary">Nenhuma Categoria Cadastrada Ainda :(</h4>
         {%endif%}
-        <a href="/categorias/cadastro" class="btn btn-success">Adicionar</a>
+        
 			
 		</div>
         
 	</div>
 
+    <div ng-app="categoriaApp" ng-controller="CategoriaController">
+        <button class="btn btn-success" ng-click="toggle()">Adicionar</button><br/><br/>
+        <input ng-model="categoria.nome">
+        <categoriaform ng-show="form" category="categoria" nome-label="Roupas" categoria-pai-label="Categoria Pai"></categoriaform>
+
+
+    </div>
 {% endblock %}
