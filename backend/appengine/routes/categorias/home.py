@@ -10,24 +10,22 @@ from routes.categorias import editar
 from google.appengine.ext import ndb
 from tekton.gae.middleware.redirect import RedirectResponse
 from routes.categorias import rest
+from categoria import validation
+import json
 
 
 @no_csrf
 @login_required
-def index():
+def index(_resp):
+    categorias = Categoria.query().fetch()
+    categoria_form = validation.CategoriaForm()
 
-    query = Categoria.query()
+    categorias = [categoria_form.fill_with_model(c) for c in categorias]
 
-    editar_path_base = to_path(editar)
-    deletar_path_base = to_path(deletar)
-
-    categorias = query.fetch()
-    for cat in categorias:
-        cat.editar_path = to_path(editar_path_base, cat.key.id())
-        cat.deletar_path = to_path(deletar_path_base, cat.key.id())
+    # str_json = json.dumps(categorias)
 
 
-    contexto = {'rest_salvar_path': to_path(rest.salvar), 'categorias': categorias, 'resultados': len(categorias)}
+    contexto = {'rest_salvar_path': to_path(rest.salvar), 'rest_listar_path' : to_path(rest.index), 'resultados': len(categorias)}
     return TemplateResponse(contexto)
 
 @login_required

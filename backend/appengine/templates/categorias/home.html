@@ -5,7 +5,7 @@
     <script type="text/javascript" src="/static/angular/js/angular.min.js"></script>
     <script type="text/javascript" src="/static/categoria/js/categoria.js"></script>
     <script type="text/javascript">
-        var categoriaApp = angular.module('categoriaApp', ['categoriaModulo']);
+        var categoriaApp = angular.module('categoriaApp', ['categoriaModulo','rest']);
         var rest = angular.module('rest', []);
 
         rest.factory('CategoriaApi', function($http){
@@ -13,11 +13,21 @@
                 salvar: function(categoria){
                     return $http.post('{{ rest_salvar_path}}', categoria);
 
+                },
+                listar: function(){
+                    return $http.post('{{ rest_listar_path }}');
                 }
             }
         });
-        function CategoriaController($scope){
-            // $scope.categoria = {nome : 'Roupas', categoria_pai : 'cosmeticos'};
+        function CategoriaController($scope, CategoriaApi){
+            $scope.listando = true;
+            $scope.categoriaLista = [];
+            
+            CategoriaApi.listar().success(function(categorias){
+                // setTimeout(function(){ $scope.listando = false; }, 3000);
+                $scope.listando = false;
+                $scope.categoriaLista = categorias;
+            })
             $scope.selex = 'a';
             $scope.form = false;
             $scope.toggle = function () {
@@ -28,7 +38,9 @@
     </script>
 {% endblock %}
 {% block body %}
-	<div class="row clearfix">
+
+<div ng-app="categoriaApp" ng-controller="CategoriaController">
+	<div class="row clearfix" >
         <div class="col-md-6 col-md-6-offset-3 text-center">
         {% if resultados > 0%}
         <h3 class="text-primary">Lista de Categorias</h3>
@@ -41,19 +53,9 @@
                 <td><h5>Editar</h5></td>
                 <td><h5>Deletar</h5></td>
             </tr>
+            <img src="/static/img/ajax.gif" ng-show="listando"/>
+            <tr categorialinha ng-repeat="cat in categoriaLista" category="cat"></tr>
 
-            {% for cat in categorias %}
-                <tr><td>{{cat.key.id()}}</td>
-                <td>{{cat.nome}}</td>
-                <td>{{cat.categoria_pai}}</td>
-                <td><a href="{{ cat.editar_path }}" class="btn btn-warning glyphicon glyphicon-pencil"></a></td>
-                <td><form onSubmit="return confirm('Deseja apagar esse registro?')" method="post" action="{{ cat.deletar_path }}">
-                    {{ csrf_input() }}
-                <button class="btn btn-danger" type="submit" ><i class="glyphicon glyphicon-trash"></i></button>
-
-                </form></td>
-                </tr>
-            {% endfor %}
         </table>
         {%else%}
             <h4 class="text-primary">Nenhuma Categoria Cadastrada Ainda :(</h4>
@@ -64,11 +66,12 @@
         
 	</div>
 
-    <div ng-app="categoriaApp" ng-controller="CategoriaController">
+    <div >
         <button class="btn btn-success" ng-click="toggle()">Adicionar</button><br/><br/>
         <input ng-model="categoria.nome">
         <categoriaform ng-show="form" category="categoria" nome-label="Roupas" categoria-pai-label="Categoria Pai"></categoriaform>
 
 
     </div>
+</div>
 {% endblock %}

@@ -36,4 +36,21 @@ categoriaModulo.directive('categoriaform', function(){
 });
 
 
+categoriaModulo.directive('categorialinha', function(){
+	return{
+		restrict: 'A',
+		replace: true,
+		templateUrl: '/static/categoria/html/categoria_linha.html',
+		scope: {
+			category:'='
+		},
+		controller: function($scope, CategoriaApi){
+	
+		
+		}
+	};
+
+});
+
+
 

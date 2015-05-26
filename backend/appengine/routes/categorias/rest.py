@@ -23,5 +23,14 @@ def salvar(_resp,**propriedades):
 
 		return JsonUnsecureResponse(contexto) 
 
+@login_required
+@no_csrf
+def index():
+	categorias = Categoria.query().fetch()
+	categoria_form = validation.CategoriaForm()
+	categorias = [categoria_form.fill_with_model(c) for c in categorias]
+	return JsonUnsecureResponse(categorias)
+
+
 
 
