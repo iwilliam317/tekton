@@ -1,11 +1,30 @@
 <tr>
 	<img src="/static/img/ajax.gif" ng-show="salvando"/>
 	<td>{{category.id}}</td>
-	<td>{{category.nome}}</td>
-	<td>{{category.categoria_pai}}</td>
-	<td><a href="{{ cat.editar_path }}"  class="btn btn-warning glyphicon glyphicon-pencil"></a></td>
+	<td><span ng-hide="editando">{{category.nome}}</span>
+		<div class="form-group " ng-class="{true: '', false:'has-error'}[erros.nome==null]">
+			<input type="text" ng-model="categoriaEdicao.nome" ng-show="editando"/>
+			<span class="help-block" ng-show="erros.nome">{{ erros.nome}}</span>
+		</div>
+	</td>
+	<td><span ng-hide="editando">{{category.categoria_pai}}</span>
+		<div class="form-group" ng-class="{true: '', false: 'has-error'}[erros.categoria_pai==null]">
+			<select ng-model="categoriaEdicao.categoria_pai" ng-show="editando"><option value="">Selecione</option>
+				<option value="cosmeticos">Cosméticos</option>
+				<option value="para_voce">Para Você</option>
+				<option value="saude_higiene">Saúde/Higiene</option>
+				<option value="novidades">Novidades</option>
+			</select>
+			<span class="help-block" ng-show="erros.categoria_pai">{{ erros.categoria_pai}}</span>
+		</div>
+	</td>
 	<td>
-	<button class="btn btn-danger" ng-click="deletar()"><i class="glyphicon glyphicon-trash"></i></button>
-	<img src="/static/img/ajax.gif" ng-show="ajaxFlag"/>
+		<button ng-click="editar()" ng-hide="deletando || editando" class="btn btn-warning glyphicon glyphicon-pencil"></button>
+		<button ng-click="completarEdicao()" ng-show="editando" class="btn btn-success glyphicon glyphicon-floppy-disk"></button>
+	</td>
+	<td>
+		<button class="btn btn-danger" ng-hide="deletando || editando" ng-click="deletar()"><i class="glyphicon glyphicon-trash"></i></button>
+			<img src="/static/img/ajax.gif" ng-show="deletando"/>
+		<button ng-click="cancelar()" ng-show="editando" class="btn btn-warning glyphicon glyphicon-floppy-remove"></button>
 	</td>
 </tr>

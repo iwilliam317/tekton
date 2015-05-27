@@ -29,7 +29,7 @@ categoriaModulo.directive('categoriaform', function(){
 					$scope.erros={};
 					
 				}).error(function(erros){
-					console.log(erros.nome);
+					// console.log(erros.nome);
 					$scope.salvando = false;
 					$scope.erros = erros;
 				});
@@ -52,14 +52,44 @@ categoriaModulo.directive('categorialinha', function(){
 			deletarConcluido: '&'
 		},
 		controller: function($scope, CategoriaApi){
-			// $scope.ajaxFlag = false;
+			$scope.erros={};
+			$scope.deletando = false;
+			$scope.categoriaEdicao={};
+			$scope.editando=false;
+
 			$scope.deletar = function(){
-				// $scope.ajaxFlag = true;
+			
+			if (confirm('Deseja apagar esse registro'))
+			{	
+				$scope.deletando = true;
 				CategoriaApi.deletar($scope.category.id).success(function(){
-					console.log('deletou');
 					$scope.deletarConcluido({'categoria': $scope.category});
 				}).error(function(){
-					console.log('deu ruim');
+					
+				});
+			}
+				
+			}
+
+			$scope.editar=function(){
+				$scope.editando=true;
+				$scope.categoriaEdicao.id = $scope.category.id;
+				$scope.categoriaEdicao.nome = $scope.category.nome;
+				$scope.categoriaEdicao.categoria_pai = $scope.category.categoria_pai;
+			}
+
+			$scope.cancelar = function(){
+				$scope.editando=false;
+				$scope.erros={};
+			}
+
+			$scope.completarEdicao=function(){
+				CategoriaApi.editar($scope.categoriaEdicao).success(function(categoria){
+					$scope.category = categoria;
+					$scope.editando=false;
+					$scope.erros={};
+				}).error(function(erros){
+					$scope.erros = erros;
 				});
 			}
 		

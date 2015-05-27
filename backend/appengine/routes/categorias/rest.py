@@ -37,7 +37,27 @@ def deletar(categoria_id):
 	key = ndb.Key(Categoria, int(categoria_id))
 	key.delete()
 
-	
+
+@login_required
+@no_csrf
+def editar(_resp, categoria_id, **propriedades):
+	categoria = ndb.Key(Categoria, int(categoria_id))
+	categoria_form = validation.CategoriaForm(**propriedades)
+	erros = categoria_form.validate()
+	if erros:
+		_resp.set_status(400)
+		return JsonUnsecureResponse(erros)
+		
+	else:
+		categoria_id = int(categoria_id)
+		categoria = Categoria.get_by_id(int(categoria_id))
+		categoria.nome = propriedades['nome']
+		categoria.categoria_pai = propriedades['categoria_pai']
+
+		categoria.put()
+
+		return JsonUnsecureResponse(categoria_form.fill_with_model(categoria))
+
 
 
 

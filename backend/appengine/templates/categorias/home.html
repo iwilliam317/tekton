@@ -19,11 +19,15 @@
                 },
                 deletar: function(id){
                     return $http.post('{{ rest_deletar_path }}', {categoria_id : id});
+                },
+
+                editar: function(categoria){
+                    return $http.post('{{ rest_editar_path }}', {categoria_id : categoria.id, nome: categoria.nome, categoria_pai : categoria.categoria_pai});
                 }
             }
         });
         function CategoriaController($scope, CategoriaApi){
-            $scope.categoria={nome:'teste', categoria_pai: 'cosmeticos'};
+            // $scope.categoria={nome:'teste', categoria_pai: 'cosmeticos'};
             $scope.listando = true;
             $scope.categoriaLista = [];
             
@@ -51,6 +55,7 @@
                     }
                 }
             }
+
         }
 
     </script>
@@ -60,24 +65,21 @@
 <div ng-app="categoriaApp" ng-controller="CategoriaController">
 	<div class="row clearfix" >
         <div class="col-md-6 col-md-6-offset-3 text-center">
-        {% if resultados > 0%}
-        <h3 class="text-primary">Lista de Categorias</h3>
-         <span class="text-muted">Resultados: {{resultados}}</span><br/><br/>
-        <table class="table table-striped">
-            <tr class="info">
-                <td><h5>Código</h5></td>
-                <td><h5>Nome</h5></td>
-                <td><h5>Categoria Pai</h5></td>
-                <td><h5>Editar</h5></td>
-                <td><h5>Deletar</h5></td>
-            </tr>
-            <img src="/static/img/ajax.gif" ng-show="listando"/>
-            <tr categorialinha ng-repeat="cat in categoriaLista" category="cat" deletar-concluido="removerCategoria(categoria)"></tr>
+        
+            <h3 class="text-primary">Lista de Categorias</h3>
+             <span class="text-muted">Resultados: <input ng-model="categoriaLista.length"></span><br/><br/>
+            <table class="table table-striped" ng-show="categoriaLista.length>0">
+                <tr class="info">
+                    <td><h5>Código</h5></td>
+                    <td><h5>Nome</h5></td>
+                    <td><h5>Categoria Pai</h5></td>
+                    <td><h5>Editar</h5></td>
+                    <td><h5>Deletar</h5></td>
+                </tr>
+                <img src="/static/img/ajax.gif" ng-show="listando"/>
+                <tr categorialinha ng-repeat="cat in categoriaLista" category="cat" deletar-concluido="removerCategoria(categoria)"></tr>
 
-        </table>
-        {%else%}
-            <h4 class="text-primary">Nenhuma Categoria Cadastrada Ainda :(</h4>
-        {%endif%}
+            </table>
         
 			
 		</div>
@@ -86,7 +88,6 @@
 
     <div >
         <button class="btn btn-success" ng-click="toggle()">Adicionar</button><br/><br/>
-        <input ng-model="categoria.nome">
         <categoriaform ng-show="form" category="categoria" nome-label="Roupas" categoria-pai-label="Categoria Pai" salvar-concluido="adicionarCategoria(categoria)"></categoriaform>
 
 
