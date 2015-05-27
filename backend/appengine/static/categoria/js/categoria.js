@@ -8,7 +8,8 @@ categoriaModulo.directive('categoriaform', function(){
 		scope: {
 			category:'=',
 			nomeLabel: '@',
-			categoriaPaiLabel: '@'
+			categoriaPaiLabel: '@',
+			salvarConcluido: '&'
 		},
 		controller: function($scope, CategoriaApi){
 			$scope.salvando = false;
@@ -17,9 +18,14 @@ categoriaModulo.directive('categoriaform', function(){
 			$scope.salvar = function(){
 				$scope.salvando = true;
 				CategoriaApi.salvar($scope.category).success(function(category){
-					console.log('saved: ' +category);
+					// console.log('saved: ' +category);
+					if ($scope.salvarConcluido != undefined)
+					{
+						$scope.salvarConcluido({'categoria':category});
+					}
+					
 					$scope.salvando = false;
-					$scope.category="";
+					// $scope.category="";
 					$scope.erros={};
 					
 				}).error(function(erros){
@@ -42,10 +48,20 @@ categoriaModulo.directive('categorialinha', function(){
 		replace: true,
 		templateUrl: '/static/categoria/html/categoria_linha.html',
 		scope: {
-			category:'='
+			category:'=',
+			deletarConcluido: '&'
 		},
 		controller: function($scope, CategoriaApi){
-	
+			// $scope.ajaxFlag = false;
+			$scope.deletar = function(){
+				// $scope.ajaxFlag = true;
+				CategoriaApi.deletar($scope.category.id).success(function(){
+					console.log('deletou');
+					$scope.deletarConcluido({'categoria': $scope.category});
+				}).error(function(){
+					console.log('deu ruim');
+				});
+			}
 		
 		}
 	};

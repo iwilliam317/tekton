@@ -16,10 +16,14 @@
                 },
                 listar: function(){
                     return $http.post('{{ rest_listar_path }}');
+                },
+                deletar: function(id){
+                    return $http.post('{{ rest_deletar_path }}', {categoria_id : id});
                 }
             }
         });
         function CategoriaController($scope, CategoriaApi){
+            $scope.categoria={nome:'teste', categoria_pai: 'cosmeticos'};
             $scope.listando = true;
             $scope.categoriaLista = [];
             
@@ -28,11 +32,25 @@
                 $scope.listando = false;
                 $scope.categoriaLista = categorias;
             })
-            $scope.selex = 'a';
+ 
             $scope.form = false;
             $scope.toggle = function () {
                 $scope.form = !$scope.form;
             };
+
+            $scope.adicionarCategoria = function(categoria){
+                $scope.categoriaLista.unshift(categoria);
+            };
+
+            $scope.removerCategoria = function(categoria){
+                var categoriaLista = $scope.categoriaLista;
+                for (var i=0; i< categoriaLista.length; i+=1){
+                    if (categoria.id == categoriaLista[i].id){
+                       categoriaLista.splice(i,1);
+                        break;
+                    }
+                }
+            }
         }
 
     </script>
@@ -54,7 +72,7 @@
                 <td><h5>Deletar</h5></td>
             </tr>
             <img src="/static/img/ajax.gif" ng-show="listando"/>
-            <tr categorialinha ng-repeat="cat in categoriaLista" category="cat"></tr>
+            <tr categorialinha ng-repeat="cat in categoriaLista" category="cat" deletar-concluido="removerCategoria(categoria)"></tr>
 
         </table>
         {%else%}
@@ -69,7 +87,7 @@
     <div >
         <button class="btn btn-success" ng-click="toggle()">Adicionar</button><br/><br/>
         <input ng-model="categoria.nome">
-        <categoriaform ng-show="form" category="categoria" nome-label="Roupas" categoria-pai-label="Categoria Pai"></categoriaform>
+        <categoriaform ng-show="form" category="categoria" nome-label="Roupas" categoria-pai-label="Categoria Pai" salvar-concluido="adicionarCategoria(categoria)"></categoriaform>
 
 
     </div>

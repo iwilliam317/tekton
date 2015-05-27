@@ -25,7 +25,7 @@ def index(_resp):
     # str_json = json.dumps(categorias)
 
 
-    contexto = {'rest_salvar_path': to_path(rest.salvar), 'rest_listar_path' : to_path(rest.index), 'resultados': len(categorias)}
+    contexto = {'rest_salvar_path': to_path(rest.salvar), 'rest_listar_path' : to_path(rest.index), 'rest_deletar_path' : to_path(rest.deletar), 'resultados': len(categorias)}
     return TemplateResponse(contexto)
 
 @login_required

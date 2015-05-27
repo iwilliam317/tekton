@@ -3,9 +3,9 @@
 	<td>{{category.id}}</td>
 	<td>{{category.nome}}</td>
 	<td>{{category.categoria_pai}}</td>
-	<td><a href="{{ cat.editar_path }}" class="btn btn-warning glyphicon glyphicon-pencil"></a></td>
+	<td><a href="{{ cat.editar_path }}"  class="btn btn-warning glyphicon glyphicon-pencil"></a></td>
 	<td>
-	<button class="btn btn-danger" type="submit" ><i class="glyphicon glyphicon-trash"></i></button>
-
+	<button class="btn btn-danger" ng-click="deletar()"><i class="glyphicon glyphicon-trash"></i></button>
+	<img src="/static/img/ajax.gif" ng-show="ajaxFlag"/>
 	</td>
 </tr>

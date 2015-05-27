@@ -31,6 +31,14 @@ def index():
 	categorias = [categoria_form.fill_with_model(c) for c in categorias]
 	return JsonUnsecureResponse(categorias)
 
+@login_required
+@no_csrf
+def deletar(categoria_id):
+	key = ndb.Key(Categoria, int(categoria_id))
+	key.delete()
+
+	
+
 
 
 
