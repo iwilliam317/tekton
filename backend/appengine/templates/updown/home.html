@@ -1,21 +1,39 @@
 {% extends 'base/base.html' %}
 {% block body %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="well">
-                    <h1>{% trans %}File Upload Form{% endtrans %}</h1>
-                    <form action="{{ upload_url }}" method="post" role="form" enctype="multipart/form-data">
-                        {{ csrf_input() }}
-                        <div class="form-group ">
-                            <label for="upInput"
-                                   class="control-label">{% trans %}Choose a file{% endtrans %}</label>
-                            <input id="upInput" type="file" name="files[]" multiple="multiple" class="form-control"/>
-                        </div>
-                        <button type="submit" class="btn btn-success">{% trans %}Upload{% endtrans %}</button>
-                    </form>
-                </div>
-            </div>
+  <div class="row clearfix">
+        <div class="col-md-12 column">
+
+            <h3 class="text-success"> Lista de Upload </h3>
+            <br/>
+            <a href="/updown/cadastro" class="btn btn-success">Novo</a>
+            <br/><br/>
+            <table class="table table-striped">
+              <tr class="info">
+                <td><h5>Nome do Arquivo</h5></td>
+                <td><h5>Imagem</h5></td>
+                <td><h5>Baixar</h5></td>
+              </tr>
+                {% for arq in arquivos %}
+                <tr>
+                  <td>
+                    {{arq.filename}}
+                  </td>
+                  <td>
+                    {%if arq.content_type == 'image/jpeg'%}
+                      <img src="{{ arq.img(80) }}" />
+                    
+                    {%else %}
+                      Sem Imagem
+                    {%endif%}
+                  </td>
+                  <td>
+                    <a class="btn btn-primary" href="{{ arq.download_path }}"><i class="glyphicon glyphicon-pencil"></i></a>
+                  </td>
+                </tr>
+                {% endfor %}
+            </table>
+
+
         </div>
     </div>
 {% endblock %}
